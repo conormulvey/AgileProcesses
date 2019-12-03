@@ -4,13 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Testing'
+                echo 'Building'
             }
         }
         stage('Test') {
             steps {
-                sh 'make check || true' 
-                junit '**/target/*.xml'
+                echo 'Testing'
             }
         }
         stage('Deploy') {
