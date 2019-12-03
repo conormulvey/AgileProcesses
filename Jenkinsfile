@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "behave -i test.feature --junit"
+                echo 'Testing'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'make check || true' 
+                junit '**/target/*.xml'
             }
         }
         stage('Deploy') {
