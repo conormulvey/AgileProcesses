@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh "behave -i test.feature --junit"
             }
         }
         stage('Test') {
