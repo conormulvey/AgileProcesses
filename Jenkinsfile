@@ -1,23 +1,14 @@
-pipeline { 
-    agent any 
-    options {
-        skipStagesAfterUnstable()
-    }
+pipeline {
+    agent none 
     stages {
         stage('Build') { 
-            steps { 
-                sh 'make' 
+            agent {
+                docker {
+                    image 'python:2-alpine' 
+                }
             }
-        }
-        stage('Test'){
             steps {
-                sh 'make check'
-                junit 'reports/**/*.xml' 
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'make publish'
+                sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
             }
         }
     }
