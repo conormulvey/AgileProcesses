@@ -1,11 +1,11 @@
+
 pipeline {
-    agent any
+    agent none 
     stages {
-        stage('Build') {
+        stage('Build') { 
             steps {
-                bat 'set'
+                sh 'python -m py_compile sources/HelloPython.py' 
             }
         }
-
     }
 }
